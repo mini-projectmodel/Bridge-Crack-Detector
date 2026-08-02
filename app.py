@@ -40,11 +40,10 @@ if uploaded_file is not None:
         # Note: Your model outputs a 2-class probability.
         # Check the output shape and adjust if necessary.
         # If your model output is [prob_cracked, prob_uncracked], this code is correct.
-        confidence = float(prediction[0][0])
+        crack_prob = float(prediction[0][0]) * 100
+        clean_prob = float(prediction[0][1]) * 100
 
-        if confidence < 0.5:
-            crack_prob = (1 - confidence) * 100
+        if crack_prob > 50:
             st.error(f"⚠️ **Defect Identified**: Structural Crack Detected (Confidence: {crack_prob:.2f}%)")
         else:
-            clean_prob = confidence * 100
             st.success(f"✅ **Intact Surface**: No Cracks Detected (Confidence: {clean_prob:.2f}%)")
