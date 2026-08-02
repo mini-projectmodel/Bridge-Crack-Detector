@@ -13,7 +13,7 @@ st.write("Upload a bridge surface photo to evaluate structural integrity.")
 # Cache model in memory for fast inferencing
 @st.cache_resource
 def load_trained_model():
-    return tf.keras.models.load_model('./model.h5')
+    return tf.keras.models.load_model('./new_model_2.h5')
 
 model = load_trained_model()
 
